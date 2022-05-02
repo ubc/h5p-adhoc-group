@@ -18,5 +18,8 @@ Install phpcs with WordPress coding standard
 
 ## Change Log
 
+### 1.0.1
+- Permission bug fix.
+
 ### 1.0.0
 - Initial commit of the project.

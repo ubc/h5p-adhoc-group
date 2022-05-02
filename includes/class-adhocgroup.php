@@ -218,7 +218,7 @@ class AdhocGroup {
 	public function add_user_to_group() {
 		check_ajax_referer( 'security', 'nonce' );
 
-		if ( \UBC\H5P\Taxonomy\ContentTaxonomy\Helper::is_role_editor() ) {
+		if ( ! \UBC\H5P\Taxonomy\ContentTaxonomy\Helper::is_role_editor() && ! \UBC\H5P\Taxonomy\ContentTaxonomy\Helper::is_role_administrator() ) {
 			return;
 		}
 
