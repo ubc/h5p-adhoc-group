@@ -1,0 +1,33 @@
+.list-user-table{
+    width: 100%;
+    background: #fff;
+
+    tr{
+        th, td{
+            padding: 10px 15px;
+            text-align: left;
+
+            &.table-action{
+                width: 80px;
+            }
+        }
+    }
+}
+
+.add-user-wapper{
+    display: flex;
+}
+
+p#message{
+    &:empty{
+        display: none;
+    }
+
+    &[status="valid"]{
+        color: green;
+    }
+
+    &[status="invalid"]{
+        color: red;
+    }
+}
