@@ -11,7 +11,7 @@
  * Plugin Name: UBC H5P Addon - Adhoc Group
  * Plugin URI:  https://ubc.ca/
  * Description: The plugin allows administrators and editors to create adhoc groups and add users to individual group.
- * Version:     1.0.4
+ * Version:     1.0.0
  * Author:      Kelvin Xu
  * Text Domain: ubc-h5p-adhoc-group
  * License:     GPL v2 or later

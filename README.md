@@ -15,3 +15,8 @@ Build JS and CSS for production
 
 Install phpcs with WordPress coding standard
 `composer install`
+
+## Change Log
+
+### 1.0.0
+- Initial commit of the project.
