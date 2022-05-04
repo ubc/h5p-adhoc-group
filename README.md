@@ -18,6 +18,9 @@ Install phpcs with WordPress coding standard
 
 ## Change Log
 
+### 1.0.2
+- Enable admin ui for listing view
+
 ### 1.0.1
 - Permission bug fix.
 
