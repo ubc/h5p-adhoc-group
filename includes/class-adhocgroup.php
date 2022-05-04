@@ -278,7 +278,7 @@ class AdhocGroup {
 	public function delete_user_from_group() {
 		check_ajax_referer( 'security', 'nonce' );
 
-		if ( \UBC\H5P\Taxonomy\ContentTaxonomy\Helper::is_role_editor() ) {
+		if ( ! \UBC\H5P\Taxonomy\ContentTaxonomy\Helper::is_role_editor() && ! \UBC\H5P\Taxonomy\ContentTaxonomy\Helper::is_role_administrator() ) {
 			return;
 		}
 
@@ -344,7 +344,7 @@ class AdhocGroup {
 	 * @return void
 	 */
 	public function enqueue_listing_view_script() {
-		if ( ! \UBC\H5P\Taxonomy\ContentTaxonomy\Helper::is_h5p_list_view_page() || \UBC\H5P\Taxonomy\ContentTaxonomy\Helper::is_role_administrator() ) {
+		if ( ! \UBC\H5P\Taxonomy\ContentTaxonomy\Helper::is_h5p_list_view_page() ) {
 			return;
 		}
 
