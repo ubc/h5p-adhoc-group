@@ -1,23 +1,2 @@
-.list-user-table {
-  width: 100%;
-  background: #fff; }
-  .list-user-table tr th, .list-user-table tr td {
-    padding: 10px 15px;
-    text-align: left; }
-    .list-user-table tr th.table-action, .list-user-table tr td.table-action {
-      width: 80px; }
+.list-user-table{width:100%;background:#fff}.list-user-table tr th,.list-user-table tr td{padding:10px 15px;text-align:left}.list-user-table tr th.table-action,.list-user-table tr td.table-action{width:80px}.add-user-wapper{display:flex}p#message:empty{display:none}p#message[status="valid"]{color:green}p#message[status="invalid"]{color:red}
 
-.add-user-wapper {
-  display: flex; }
-
-p#message:empty {
-  display: none; }
-
-p#message[status="valid"] {
-  color: green; }
-
-p#message[status="invalid"] {
-  color: red; }
-
-
-/*# sourceMappingURL=term_edit.css.map*/

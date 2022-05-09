@@ -18,6 +18,11 @@ Install phpcs with WordPress coding standard
 
 ## Change Log
 
+### 1.0.3
+- Update Group taxonomy label
+- Change Group taxonomy to be non-hierarchical.
+- Build assets for production.
+
 ### 1.0.2
 - Enable admin ui for listing view
 

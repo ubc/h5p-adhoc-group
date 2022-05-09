@@ -57,10 +57,22 @@ class AdhocGroup {
 			$this->tax,
 			array( 'user' ),
 			array(
-				'label'        => __( 'Group', 'ubc-h5p-adhoc-group' ),
+				'labels'       => array(
+					'name'              => _x( 'User Groups', 'taxonomy general name', 'ubc-h5p-taxonomy' ),
+					'singular_name'     => _x( 'User Group', 'taxonomy singular name', 'ubc-h5p-taxonomy' ),
+					'search_items'      => __( 'Search User Groups', 'ubc-h5p-taxonomy' ),
+					'all_items'         => __( 'All User Groups', 'ubc-h5p-taxonomy' ),
+					'parent_item'       => __( 'Parent User Group', 'ubc-h5p-taxonomy' ),
+					'parent_item_colon' => __( 'Parent User Group:', 'ubc-h5p-taxonomy' ),
+					'edit_item'         => __( 'Edit User Group', 'ubc-h5p-taxonomy' ),
+					'update_item'       => __( 'Update User Group', 'ubc-h5p-taxonomy' ),
+					'add_new_item'      => __( 'Add New User Group', 'ubc-h5p-taxonomy' ),
+					'new_item_name'     => __( 'New User Group Name', 'ubc-h5p-taxonomy' ),
+					'menu_name'         => __( 'User Group', 'ubc-h5p-taxonomy' ),
+				),
 				'public'       => true,
 				'rewrite'      => false,
-				'hierarchical' => true,
+				'hierarchical' => false,
 				'capabilities' => array( 'edit_others_h5p_contents' ),
 			)
 		);
