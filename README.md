@@ -18,6 +18,9 @@ Install phpcs with WordPress coding standard
 
 ## Change Log
 
+### 1.0.4
+- Do not show 'Group' tab for administrator. Only show 'Group' filter for administrator tab.
+
 ### 1.0.3
 - Update Group taxonomy label
 - Change Group taxonomy to be non-hierarchical.
