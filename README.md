@@ -18,6 +18,9 @@ Install phpcs with WordPress coding standard
 
 ## Change Log
 
+### 1.0.5
+- Allow Group filter trigger pagination index reset
+
 ### 1.0.4
 - Do not show 'Group' tab for administrator. Only show 'Group' filter for administrator tab.
 

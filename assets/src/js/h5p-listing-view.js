@@ -37,7 +37,7 @@ wp.hooks.addFilter('h5p-listing-view-additional-filters', 'h5p-group', ( childre
             <select
                 className='h5p-filter-group'
                 onChange={() => {
-                    window.h5pTaxonomy.listView.doFetch();
+                    window.h5pTaxonomy.listView.fetchContent();
                 }}
             >
                 <option value="">Select Group...</option>
