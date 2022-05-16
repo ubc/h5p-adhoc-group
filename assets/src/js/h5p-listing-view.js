@@ -2,21 +2,32 @@ import React, { Fragment } from 'react';
 import '../css/h5p-listing-view.scss';
 
 wp.hooks.addFilter('h5p-listing-view-additional-tab', 'h5p-group', tabs => {
+    if( ubc_h5p_adhocgroup.is_user_admin ) {
+        return tabs;
+    }
+
     return [...tabs, {
-        label: 'My group H5P content',
+        label: 'My Group H5P content',
         slug: 'group'
     }];
 });
 
 wp.hooks.addFilter('h5p-listing-view-additional-filters', 'h5p-group', ( children, currentTab ) => {
-    const options = Object.keys(ubc_h5p_adhocgroup.user_groups).map((groupIndex, index) => {
+    const groups = ubc_h5p_adhocgroup.is_user_admin ? ubc_h5p_adhocgroup.all_groups : ubc_h5p_adhocgroup.user_groups;
+    const options = Object.keys( groups ).map((groupIndex, index) => {
         return {
-            label: ubc_h5p_adhocgroup.user_groups[groupIndex].name,
-            value: ubc_h5p_adhocgroup.user_groups[groupIndex].term_id
+            label: groups[groupIndex].name,
+            value: groups[groupIndex].term_id
         };
     });
 
-    if( currentTab !== 2 ) {
+    /**
+     * Add Group filter to the tab section
+     * 
+     * Condition 1: User is not admin and tab is not group
+     * Condition 2: User is admin and tab is not Community H5P Contents
+     */
+    if( ( ubc_h5p_adhocgroup.is_user_admin && currentTab.slug !== 'admin' ) || ( ! ubc_h5p_adhocgroup.is_user_admin && currentTab.slug !== 'group' ) ) {
         return children;
     }
 
@@ -39,7 +50,7 @@ wp.hooks.addFilter('h5p-listing-view-additional-filters', 'h5p-group', ( childre
 });
 
 wp.hooks.addFilter('h5p-listing-view-additional-form-data', 'h5p-group', (formData, currentTab) => {
-    if( currentTab !== 2 ){
+    if( ( ubc_h5p_adhocgroup.is_user_admin && currentTab.slug !== 'admin' ) || ( ! ubc_h5p_adhocgroup.is_user_admin && currentTab.slug !== 'group' ) ) {
         return formData;
     }
 

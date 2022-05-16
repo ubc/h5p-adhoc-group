@@ -30,9 +30,9 @@ class AdhocGroup {
 	public function __construct() {
 		add_action( 'init', array( $this, 'create_taxonomy' ) );
 		add_action( 'admin_menu', array( $this, 'create_taxonomy_menus' ), 51 );
-		add_filter( 'manage_edit-ubc_h5p_content_group_columns', array( $this, 'manage_group_admin_user_column' ) );
-		add_filter( 'manage_ubc_h5p_content_group_custom_column', array( $this, 'manage_group_admin_user_count_column' ), 10, 3 );
-		add_action( 'ubc_h5p_content_group_edit_form', array( $this, 'add_user_form' ), 10, 2 );
+		add_filter( 'manage_edit-' . $this->tax . '_columns', array( $this, 'manage_group_admin_user_column' ) );
+		add_filter( 'manage_' . $this->tax . '_custom_column', array( $this, 'manage_group_admin_user_count_column' ), 10, 3 );
+		add_action( $this->tax . '_edit_form', array( $this, 'add_user_form' ), 10, 2 );
 
 		add_action( 'wp_ajax_ubc_h5p_add_user_to_group', array( $this, 'add_user_to_group' ) );
 		add_action( 'wp_ajax_ubc_h5p_delete_user_from_group', array( $this, 'delete_user_from_group' ) );
@@ -92,7 +92,7 @@ class AdhocGroup {
 			__( 'Group', 'ubc-h5p-taxonomy' ),
 			__( 'Group', 'ubc-h5p-taxonomy' ),
 			'edit_others_h5p_contents',
-			'edit-tags.php?taxonomy=ubc_h5p_content_group'
+			'edit-tags.php?taxonomy=' . $this->tax
 		);
 
 	}//end create_taxonomy_menus()
@@ -119,7 +119,7 @@ class AdhocGroup {
 	public function manage_group_admin_user_count_column( $display, $column, $term_id ) {
 		if ( 'users' === $column ) {
 			$term = get_term( $term_id, $this->tax );
-			echo '<a href="term.php?taxonomy=ubc_h5p_content_group&tag_ID=' . (int) $term_id . '">' . (int) $term->count . '</a>';
+			echo '<a href="term.php?taxonomy=' . esc_textarea( $this->tax ) . '&tag_ID=' . (int) $term_id . '">' . (int) $term->count . '</a>';
 		}
 	}
 
@@ -369,8 +369,9 @@ class AdhocGroup {
 		);
 
 		$user_terms = wp_get_object_terms( get_current_user_id(), $this->tax );
+		$all_terms  = get_terms( $this->tax, array( 'hide_empty' => false ) );
 
-		if ( ! is_array( $user_terms ) ) {
+		if ( ! \UBC\H5P\Taxonomy\ContentTaxonomy\Helper::is_role_administrator() && ! is_array( $user_terms ) ) {
 			return;
 		}
 
@@ -379,7 +380,9 @@ class AdhocGroup {
 			'ubc_h5p_adhocgroup',
 			array(
 				'can_user_editor_others' => current_user_can( 'edit_others_h5p_contents' ),
+				'is_user_admin'          => \UBC\H5P\Taxonomy\ContentTaxonomy\Helper::is_role_administrator(),
 				'user_groups'            => $user_terms,
+				'all_groups'             => $all_terms,
 			)
 		);
 
@@ -427,7 +430,7 @@ class AdhocGroup {
 	 */
 	public function query_data_term_ids( $term_ids, $context ) {
 		// phpcs:ignore
-		if ( 'group' === $context && isset( $_POST['group'] ) && is_numeric( $_POST['group'] ) ) {
+		if ( ( 'group' === $context || 'admin' === $context ) && isset( $_POST['group'] ) && is_numeric( $_POST['group'] ) ) {
 			// phpcs:ignore
 			$group_id = (int) $_POST['group'];
 
