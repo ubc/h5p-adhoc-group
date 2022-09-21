@@ -18,6 +18,10 @@ Install phpcs with WordPress coding standard
 
 ## Change Log
 
+### 1.0.6
+- Package.json updated
+- JavaScript console error fix
+
 ### 1.0.5
 - Allow Group filter trigger pagination index reset
 
