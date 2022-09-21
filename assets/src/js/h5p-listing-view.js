@@ -54,6 +54,6 @@ wp.hooks.addFilter('h5p-listing-view-additional-form-data', 'h5p-group', (formDa
         return formData;
     }
 
-    formData.append( 'group', document.querySelector('.h5p-filter-group').value);
+    formData.append( 'group', document.querySelector('.h5p-filter-group') ? document.querySelector('.h5p-filter-group').value : '');
     return formData;
 });

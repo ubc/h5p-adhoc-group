@@ -1,2 +1,1 @@
-#h5p-more-filters select{width:100%;max-width:100%;min-height:44px;padding:2px 8px;background-color:#fff;border-color:#ccc;border-radius:4px;border-style:solid;border-width:1px}#h5p-more-filters select option[name="placeholder"]{color:gray}#h5p-more-filters select option:not([name="placeholder"]){color:#333}
-
+#h5p-more-filters select{width:100%;max-width:100%;min-height:44px;padding:2px 8px;background-color:#fff;border-color:#ccc;border-radius:4px;border-style:solid;border-width:1px}#h5p-more-filters select option[name=placeholder]{color:gray}#h5p-more-filters select option:not([name=placeholder]){color:#333}
